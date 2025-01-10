@@ -2,7 +2,7 @@
 //база данных
 //классы
 //интерфейсы
-//
+//лямбда выражения
 
 package com.example.tobo.controllers;
 
@@ -73,14 +73,12 @@ public class TodoController implements CommandLineRunner {
     @PostMapping("/search")
     public String search(@RequestParam("searchTerm") String searchTerm, Model model) {
         try {
-            List<TodoItem> allItems = todoItemRepository.findAll();
-            List<TodoItem> searchResults = new ArrayList<>();
+            //лямбда выражения для поиска
+            List<TodoItem> searchResults = todoItemRepository.findAll().stream()
+                    .filter(item -> item.getTitle() != null &&
+                            item.getTitle().toLowerCase().contains(searchTerm.toLowerCase()))
+                    .toList();
 
-            for (TodoItem item : allItems) {
-                if (item.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
-                    searchResults.add(item);
-                }
-            }
             model.addAttribute("allTodos", searchResults);
             model.addAttribute("newTodo", new TodoItem());
             model.addAttribute("searchTerm", searchTerm);

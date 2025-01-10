@@ -39,14 +39,26 @@ public class TodoController implements CommandLineRunner {
 
     @PostMapping("/add")
     public String add(@ModelAttribute TodoItem todoItem, Model model) {
+
+        String forbiddenPattern = "(?i).*z|zov|w.*";
+
+
+        if (todoItem.getTitle().matches(forbiddenPattern) ||
+                todoItem.getTitle().matches(forbiddenPattern)) {
+
+            return "redirect:/";
+        }
+
         try {
             todoItemRepository.save(todoItem);
         } catch (Exception e) {
             model.addAttribute("error", "Error adding TODO item: " + e.getMessage());
             return "index";
         }
+
         return "redirect:/";
     }
+
 
     @PostMapping("/delete/{id}")
     public String deleteTodoItem(@PathVariable("id") int id, Model model) {

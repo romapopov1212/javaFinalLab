@@ -1,14 +1,15 @@
 //обработка исключений
 //база данных
 //классы
-//интерфейсы
+//интерфейс
 //лямбда выражения
+//регулярные выражения
 
 package com.example.tobo.controllers;
 
 import com.example.tobo.model.TodoItem;
 import com.example.tobo.repositories.TodoItemRepository;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.CommandLineRunner; //интерфейс
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class TodoController implements CommandLineRunner {
+public class TodoController implements CommandLineRunner { // реализует интерфейс(наследование)
 
     private final TodoItemRepository todoItemRepository;
 
@@ -102,7 +103,7 @@ public class TodoController implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) { // полиморфизм
 
     }
 }

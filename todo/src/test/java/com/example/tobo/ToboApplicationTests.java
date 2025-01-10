@@ -1,10 +1,10 @@
-package com.example.buysell;
+package com.example.tobo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BuysellApplicationTests {
+class ToboApplicationTests {
 
 	@Test
 	void contextLoads() {
